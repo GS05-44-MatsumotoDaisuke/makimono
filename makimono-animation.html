@@ -35,6 +35,9 @@
         var controls;
         var shadowHelper;
         
+        var message;
+        var loader;
+        
         //scene
         scene = new THREE.Scene();
         
@@ -87,6 +90,22 @@
         paper.add(paperout);
         paper.add(paperin);
         scene.add(paper);
+        
+        //texture
+        loader = new THREE.TextureLoader();
+        loader.load('test.png', function(texture){
+            createBox(texture);
+            render();
+        });
+        
+        function createBox(texture){
+            message = new THREE.Mesh(
+                new THREE.PlaneGeometry(50,50),
+                new THREE.MeshBasicMaterial({map: texture})
+            );
+            message.position.set(0,0,2);
+            scene.add(message);
+        }
         
         //light
         light = new THREE.DirectionalLight('#EFEFEF', 1);
