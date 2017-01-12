@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>filepost</title>
+    <style>
+    .file{
+        display: inline-block;
+        overflow: hidden;
+        position: relative;
+        padding: .5em;
+        border: 1px solid #999;
+        background-color: #eee;
+        }
+        .file input[type="file"] {
+            opacity: 0;
+            filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+            position: absolute;
+            right: 0;
+            top: 0;
+            margin: 0;
+            font-size: 100px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <form method="post" enctype="multipart/form-data">
+    <div class="file">
+    画像ファイル<input type="file" name="pic">
+    </div>
+    <input type="submit" name="botan" value="send">
+    </form>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas-file</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <style>
+    .file{
+        display: inline-block;
+        overflow: hidden;
+        position: relative;
+        padding: .5em;
+        border: 1px solid #999;
+        background-color: #eee;
+        }
+    .file input[type="file"]{
+        opacity: 0;
+        filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+        position: absolute;
+        right: 0;
+        top: 0;
+        margin: 0;
+        font-size: 100px;
+        cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="300" height="300"></canvas>
+    <div class="file">
+    <input id="uploadFile" name="image" type="file"/>
+    画像をアップロード
+    </div>
+    <input type="button" value="画像に変換" onclick="chgImg()">
+    <div><img id="newImg"></div>
+    <script>
+        $("#uploadFile").change(function() {
+            var file = this.files[0];
+            if (!file.type.match(/^image\/(png|jpeg|gif)$/)) return;
+            var image = new Image();
+            var reader = new FileReader();
+            reader.onload = function(evt) {
+                image.onload = function() {
+                    $("#canvas").attr("width",image.width);
+                    $("#canvas").attr("height",image.height);
+                    var canvas = $("#canvas");
+                    var ctx = canvas[0].getContext("2d");
+                    ctx.drawImage(image, 0, 0);
+                }
+                image.src = evt.target.result;
+            }
+            reader.readAsDataURL(file);
+        });
+        //画像に変換
+        var cvs = document.getElementById("canvas");
+        function chgImg(){
+            var png = cvs.toDataURL();
+            console.log(png);
+            document.getElementById("newImg").src = png;
+        }
+</script>
+</body>
+</html>
