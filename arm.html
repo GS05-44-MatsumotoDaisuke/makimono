@@ -540,6 +540,94 @@
         scene.add(handle3);
         
         
+        var box;
+        box = new THREE.Mesh(
+            new THREE.CubeGeometry(20,30,3),
+            new THREE.MeshPhongMaterial({color:'#5F5F62'})
+            //new THREE.MeshPhongMaterial({color:'#5F5F62', wireframe: true})
+        );
+        box.position.set(0,20,49);
+        
+        var boxin;
+        boxin = new THREE.Mesh(
+            new THREE.CubeGeometry(15,25,3),
+            new THREE.MeshPhongMaterial({color:'#D3D5E1'})
+            //new THREE.MeshPhongMaterial({color:'#D3D5E1', wireframe: true})
+        );
+        boxin.position.set(0,20,50);
+        
+        var boxinin;
+        boxinin = new THREE.Mesh(
+            new THREE.CubeGeometry(12,23,3),
+            new THREE.MeshPhongMaterial({color:'#5F5F62'})
+            //new THREE.MeshPhongMaterial({color:'#5F5F62', wireframe: true})
+        );
+        boxinin.position.set(0,20,51);
+        
+        var arm1;
+        arm1 = new THREE.Mesh(
+            new THREE.CylinderGeometry(5,5,40,100,50),
+            new THREE.MeshPhongMaterial({color:'#5F5F62'})
+            //new THREE.MeshPhongMaterial({color:'#5F5F62', wireframe: true})
+        );
+        arm1.position.set(0,20,30);
+        arm1.rotation.x += 90 * Math.PI/180;
+        
+        var arm2;
+        arm2 = new THREE.Mesh(
+            new THREE.CylinderGeometry(4,4,2,100,50),
+            new THREE.MeshPhongMaterial({color:'#5F5F62'})
+            //new THREE.MeshPhongMaterial({color:'#5F5F62', wireframe: true})
+        );
+        arm2.position.set(2,20,45);
+        arm2.rotation.z += 90 * Math.PI/180;
+        
+        var arm3;
+        arm3 = new THREE.Mesh(
+            new THREE.CylinderGeometry(3,3,2,100,50),
+            new THREE.MeshPhongMaterial({color:'#5F5F62'})
+            //new THREE.MeshPhongMaterial({color:'#5F5F62', wireframe: true})
+        );
+        arm3.position.set(0,20,45);
+        arm3.rotation.x += 30 * Math.PI/180;
+        
+        var hand1;
+        hand1 = new THREE.Mesh(
+            new THREE.CubeGeometry(4,1,1),
+            new THREE.MeshPhongMaterial({color:'#5F5F62'})
+            //new THREE.MeshPhongMaterial({color:'#D3D5E1', wireframe: true})
+        );
+        hand1.position.set(-4,20,46);
+        hand1.rotation.y += 70 * Math.PI/180;
+        hand1.rotation.x += 100 * Math.PI/180;
+        hand1.rotation.z += 100 * Math.PI/180;
+        
+        var hand2;
+        hand2 = new THREE.Mesh(
+            new THREE.CubeGeometry(4,1,1),
+            new THREE.MeshPhongMaterial({color:'#5F5F62'})
+            //new THREE.MeshPhongMaterial({color:'#D3D5E1', wireframe: true})
+        );
+        hand2.position.set(2,20,46);
+        hand2.rotation.y -= 70 * Math.PI/180;
+        hand2.rotation.x += 121 * Math.PI/180;
+        hand2.rotation.z += 100 * Math.PI/180;
+        
+        var toolbox;
+        toolbox = new THREE.Group();
+        toolbox.add(box);
+        toolbox.add(boxin);
+        toolbox.add(boxinin);
+        toolbox.add(arm1);
+        toolbox.add(arm2);
+        toolbox.add(arm3);
+        toolbox.add(hand1);
+        toolbox.add(hand2);
+        toolbox.position.y -= 20;
+        toolbox.position.z += 8;
+        toolbox.rotation.x -= 20 * Math.PI/180;
+        scene.add(toolbox);
+        
         //light
         light = new THREE.DirectionalLight('#EFEFEF', 1);
         light.position.set(0, 100, 30);
@@ -587,6 +675,64 @@
             if(boxin1.position.z > 100){
                 boxin1.position.z -= 0.5;
                 handle1.position.z -= 0.5;
+            }
+            
+            
+            arm1.position.z += 0.3;
+            arm2.position.z += 0.3;
+            arm3.position.z += 0.3;
+            hand1.position.z += 0.3;
+            hand2.position.z += 0.3;
+            if(arm1.position.z > 70){
+                arm1.position.z -= 0.3;
+                arm2.position.z -= 0.3;
+                arm3.position.z -= 0.3;
+                hand1.position.z -= 0.3;
+                hand2.position.z -= 0.3;
+                arm3.position.x += 0.18;
+                hand1.position.x += 0.18;
+                hand2.position.x += 0.18;
+                arm2.scale.y += 0.09;
+                arm2.position.x += 0.1;
+                if(arm2.scale.y > 20){
+                    arm2.scale.y -= 0.09;
+                    arm2.position.x -= 0.1;
+                    arm3.position.x -= 0.18;
+                    hand1.position.x -= 0.18;
+                    hand2.position.x -= 0.18;
+                    arm3.scale.y += 0.14;
+                    arm3.position.y -= 0.12;
+                    arm3.position.z -= 0.07;
+                    hand1.position.y -= 0.2;
+                    hand2.position.y -= 0.2;
+                    hand1.position.z -= 0.125;
+                    hand2.position.z -= 0.125;
+                    if(arm3.scale.y > 35){
+                        arm3.scale.y -= 0.14;
+                        arm3.position.y += 0.12;
+                        arm3.position.z += 0.07;
+                        hand1.position.y += 0.2;
+                        hand2.position.y += 0.2;
+                        hand1.position.z += 0.125;
+                        hand2.position.z += 0.125;
+                        hand1.scale.y += 0.2;
+                        hand2.scale.y += 0.2;
+                        if(hand1.scale.y > 0.4){
+                            hand1.position.y -= 0.2;
+                            hand2.position.y -= 0.2;
+                            hand1.position.z -= 0.08;
+                            hand2.position.z -= 0.08;
+                            if(hand1.scale.y > 20){
+                                hand1.scale.y -= 0.2;
+                                hand2.scale.y -= 0.2;
+                                hand1.position.y += 0.2;
+                                hand2.position.y += 0.2;
+                                hand1.position.z += 0.08;
+                                hand2.position.z += 0.08;
+                            }
+                        }
+                    }
+                }
             }
             
             controls.update();
