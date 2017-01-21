@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background: red;
+            animation-duration: 3s;
+            animation-name: yoshikawa;
+        }
+        @keyframes yoshikawa{
+            from {
+                
+                margin-left: 0px;
+            }
+            50%{
+                width: 500px;
+            }
+            75%{
+                display: none;
+            }
+            to {
+                margin-left:300px;
+                margin-top: 300px;
+                width: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>
